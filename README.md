@@ -1,0 +1,1 @@
+Versão mais atualizada da FortuneCookie API
