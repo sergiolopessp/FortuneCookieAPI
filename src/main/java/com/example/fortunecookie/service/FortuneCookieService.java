@@ -3,14 +3,14 @@ package com.example.fortunecookie.service;
 import com.example.fortunecookie.data.FraseSorte;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class FortuneCookieService {
 
-    final private List<String> frases = Arrays.asList(
+    private final List<String> frases = Arrays.asList(
             "A vida trará coisas boas se tiver paciência.",
             "Demonstre amor e alegria em todas as oportunidades e verá que a paz nasce dentro de si.",
             "Não compense na ira o que lhe falta na razão.",
@@ -75,10 +75,11 @@ public class FortuneCookieService {
 
 
     public FraseSorte sorteiaFrase() {
-        int indice = ThreadLocalRandom.current().nextInt(frases.size());
-        FraseSorte fraseSorte = new FraseSorte(frases.get(indice));
 
-        return fraseSorte;
+        SecureRandom random = new SecureRandom();
+        int indice = random.nextInt(frases.size());
+        return new FraseSorte(frases.get(indice));
+
     }
 
 }

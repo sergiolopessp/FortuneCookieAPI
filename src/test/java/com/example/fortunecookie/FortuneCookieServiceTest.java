@@ -13,7 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 @SpringBootTest
-public class FortuneCookieServiceTest {
+class FortuneCookieServiceTest {
 
     @Autowired
     FortuneCookieService fortuneCookieService;
