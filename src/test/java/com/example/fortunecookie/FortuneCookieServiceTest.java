@@ -22,4 +22,7 @@ class FortuneCookieServiceTest {
     void sorteiaFraseSucesso() {
         assertInstanceOf(FraseSorte.class, fortuneCookieService.sorteiaFrase());
     }
+
+    @Test
+    void retornaNumerodaSorte() {assertInstanceOf(String.class, fortuneCookieService.sorteiaNumero("80")); }
 }

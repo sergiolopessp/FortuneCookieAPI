@@ -82,4 +82,12 @@ public class FortuneCookieService {
 
     }
 
+    public String sorteiaNumero(String numero) {
+        SecureRandom random = new SecureRandom();
+        StringBuilder numerodaSorte = new StringBuilder();
+        numerodaSorte.append("Seu número da sorte é : ");
+        numerodaSorte.append(random.nextInt(Integer.parseInt(numero)));
+        return numerodaSorte.toString();
+    }
+
 }
