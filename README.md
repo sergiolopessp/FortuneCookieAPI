@@ -6,3 +6,10 @@ Atualizada na Branch Main com o Spring Boot, versão 3.0.2, e atualizações das
 
 A partir do Spring Boot 3, é pré-requisito para essa aplicação a JDK 17 ou superior.
 
+______________
+
+Release Notes
+
+Versão 1.2.1 
+    Implementação de controle de Exceptions Usando Problem Details, conforme:
+    https://deviniciative.wordpress.com/2023/02/17/spring-boot-3-melhorando-suas-exceptions-com-problem-details/
