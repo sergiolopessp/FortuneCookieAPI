@@ -82,6 +82,7 @@ public class FortuneCookieService {
 
     }
 
+
     public String sorteiaNumero(String numero) {
         SecureRandom random = new SecureRandom();
         StringBuilder numerodaSorte = new StringBuilder();
