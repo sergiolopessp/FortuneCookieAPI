@@ -18,3 +18,11 @@ _______________
 Versão 1.3.0
     Implementado a recuperação do Frase do Biscoito via IA com o ChatGPT, veja:
     https://deviniciative.wordpress.com/2023/07/12/hands-on-conectando-uma-aplicacao-java-ao-chatgpt/
+
+________________
+Versão 1.4.0
+    Atualizado para o Java 21
+    Atualizado para o Spring 3.1.4
+    Implementando Feature Toogle via FF4J
+    Troca da Porta Padrao do servidor para ":9090"
+    Detalhes: https://deviniciative.wordpress.com/2023/10/23/lidando-com-feature-flag-usando-o-ff4j/

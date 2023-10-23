@@ -21,7 +21,7 @@ class FortuneCookieControllerTest {
     FortuneCookieController fortuneCookieController;
 
     @Test
-    void retornaObjetoFrase() {
+    void retornaObjetoFrase() throws IOException, ParseException {
         assertInstanceOf(FraseSorte.class, fortuneCookieController.sorteiaFrase());
     }
 

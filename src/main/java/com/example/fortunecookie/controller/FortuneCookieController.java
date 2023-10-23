@@ -1,11 +1,13 @@
 package com.example.fortunecookie.controller;
 
+import com.example.fortunecookie.configuration.FF4jConfig;
 import com.example.fortunecookie.data.FraseSorte;
 
 import com.example.fortunecookie.exceptions.NumeroNaoInformadoException;
 import com.example.fortunecookie.service.ChatBotService;
 import com.example.fortunecookie.service.FortuneCookieService;
 import org.apache.hc.core5.http.ParseException;
+import org.ff4j.FF4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +25,17 @@ public class FortuneCookieController {
     @Autowired
     ChatBotService chatBotService;
 
+    @Autowired
+    FF4j ff4j;
+
     @GetMapping(value = "/sorteiaFrase", produces = MediaType.APPLICATION_JSON_VALUE)
-    public FraseSorte sorteiaFrase() {
-        return fortuneCookieService.sorteiaFrase();
+    public FraseSorte sorteiaFrase() throws IOException, ParseException {
+        if (ff4j.check(FF4jConfig.IA_FEATURE)) {
+            return new FraseSorte(chatBotService.enviaQuery("Me de uma frase de Biscoito da Sorte"));
+        } else {
+            return fortuneCookieService.sorteiaFrase();
+        }
+
     }
 
    @GetMapping(value = "/sorteiaFraseIA")
@@ -40,5 +50,16 @@ public class FortuneCookieController {
             throw new NumeroNaoInformadoException();
         }
 
+    }
+
+    @GetMapping(path = "/ligar-ia/{ligarIA}")
+    public String iaLigada(@PathVariable boolean ligarIA) {
+        if (ligarIA) {
+            ff4j.enable(FF4jConfig.IA_FEATURE);
+            return "Consulta via Inteligencia Artifical Ligada";
+        } else {
+            ff4j.disable(FF4jConfig.IA_FEATURE);
+            return "Consulta via base local ligada";
+        }
     }
 }
