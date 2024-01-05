@@ -1,11 +1,7 @@
-FROM openjdk:19-alpine3.16
+FROM eclipse-temurin:21.0.1_12-jdk
 
-WORKDIR /app
+COPY ./target/fortunecookie-1.5.0.jar fortunecookie-1.5.0.jar
 
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
-RUN ./mvnw dependency:go-offline
+CMD ["java","-jar","fortunecookie-1.5.0.jar"]
 
-COPY src ./src
-
-CMD ["./mvnw", "spring-boot:run"]
+EXPOSE 8080

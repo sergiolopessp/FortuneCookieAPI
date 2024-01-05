@@ -21,8 +21,18 @@ Versão 1.3.0
 
 ________________
 Versão 1.4.0
-    Atualizado para o Java 21
-    Atualizado para o Spring 3.1.4
-    Implementando Feature Toogle via FF4J
-    Troca da Porta Padrao do servidor para ":9090"
-    Detalhes: https://deviniciative.wordpress.com/2023/10/23/lidando-com-feature-flag-usando-o-ff4j/
+    - Atualizado para o Java 21
+    - Atualizado para o Spring 3.1.4
+    - Implementando Feature Toogle via FF4J
+    - Troca da Porta Padrao do servidor para ":9090"
+    - Detalhes: https://deviniciative.wordpress.com/2023/10/23/lidando-com-feature-flag-usando-o-ff4j/
+
+________________
+Versao 1.5.0
+    - Incluindo o Spring Actuator
+    - Criado mecanismo de Sanitização de dados.
+    - Retorno da porta Padrão para ":8080"
+    - Alterando o DockerFile para rodar o Temurin JDK 21 e rodar a partir do Jar
+    - Atualização do Spring Boot para versão 3.2.1
+    - Atualização das dependencias para suporte ao Java 21
+    - Detalhes: https://deviniciative.wordpress.com/2024/01/05/colocando-sua-api-spring-boot-no-ar-com-o-aws-fargate/
