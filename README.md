@@ -30,9 +30,17 @@ Versão 1.4.0
 ________________
 Versao 1.5.0
     - Incluindo o Spring Actuator
+
     - Criado mecanismo de Sanitização de dados.
+
     - Retorno da porta Padrão para ":8080"
+
     - Alterando o DockerFile para rodar o Temurin JDK 21 e rodar a partir do Jar
+
     - Atualização do Spring Boot para versão 3.2.1
+
     - Atualização das dependencias para suporte ao Java 21
+
     - Detalhes: https://deviniciative.wordpress.com/2024/01/05/colocando-sua-api-spring-boot-no-ar-com-o-aws-fargate/
+
+    - Detalhes: https://deviniciative.wordpress.com/2024/01/12/spring-boot-3-protegendo-dados-sensiveis-no-actuator/
