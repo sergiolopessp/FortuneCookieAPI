@@ -1,4 +1,4 @@
-version: '3.3'
+
 services:
   teste-java-docker:
     build:
@@ -10,4 +10,9 @@ services:
       - SERVER_PORT=8080
     volumes:
       - ./:/app
-    command: ./mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000"
+    healthcheck:
+      test: "curl -f -s http://localhost:8080/actuator/health | grep UP || exit 1"
+      interval: 20s
+      timeout: 10s
+      retries: 1
+    restart: unless-stopped

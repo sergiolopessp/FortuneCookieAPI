@@ -29,6 +29,7 @@ Versão 1.4.0
 
 ________________
 Versao 1.5.0
+    
     - Incluindo o Spring Actuator
 
     - Criado mecanismo de Sanitização de dados.
@@ -41,6 +42,12 @@ Versao 1.5.0
 
     - Atualização das dependencias para suporte ao Java 21
 
-    - Detalhes: https://deviniciative.wordpress.com/2024/01/05/colocando-sua-api-spring-boot-no-ar-com-o-aws-fargate/
+    
+    Detalhes: https://deviniciative.wordpress.com/2024/01/05/colocando-sua-api-spring-boot-no-ar-com-o-aws-fargate/
 
-    - Detalhes: https://deviniciative.wordpress.com/2024/01/12/spring-boot-3-protegendo-dados-sensiveis-no-actuator/
+    Detalhes: https://deviniciative.wordpress.com/2024/01/12/spring-boot-3-protegendo-dados-sensiveis-no-actuator/
+
+________________
+Versao 1.5.1
+    - Atualização do Spring Boot para versão 3.3.1 
+    - Atualização do docker-compose.yml para configurar o Health Check no Containerã
