@@ -56,15 +56,13 @@ public class FortuneCookieController {
 
     @GetMapping(value = "/sorteiaFraseOpenAi")
     public String sorteiaFraseOpenAi()  {
-        return openAIService.enviaQuery("A Computação Quântica e a ameaça a Criptografia RSA");
-        //return openAIService.enviaQueryModel("Me de uma frase de Biscoito da Sorte");
+        return openAIService.enviaQueryModel("Me de uma frase de Biscoito da Sorte");
     }
 
 
     @GetMapping("/geraImagem")
     public String geraImagemBiscoitoSorte() {
-        //return openAIService.enviaImagemModel("Construa uma imagem com um pessoa com barba vermelha com um biscoito da sorte");
-        return openAIService.enviaImagemModel(" Manage and Monitor Docker Containers Health") ;
+        return openAIService.enviaImagemModel("Construa uma imagem com um pessoa com barba vermelha com um biscoito da sorte");
     }
 
     @GetMapping("/sorteiaNumero/{numero}")
