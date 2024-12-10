@@ -49,5 +49,12 @@ Versao 1.5.0
 
 ________________
 Versao 1.5.1
+    
     - Atualização do Spring Boot para versão 3.3.1 
-    - Atualização do docker-compose.yml para configurar o Health Check no Containerã
+
+    - Atualização do docker-compose.yml para configurar o Health Check no Containers.
+
+________________
+Versao 1.5.2
+
+    - Inclusão de integração com o Prometheus e Actuator

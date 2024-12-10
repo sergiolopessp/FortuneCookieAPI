@@ -6,3 +6,7 @@ management:
   endpoint:
     env:
       show-values: always
+  metrics:
+    export:
+      prometheus:
+        enabled: true

@@ -1,11 +1,14 @@
 package com.example.fortunecookie.service;
 
 import com.example.fortunecookie.data.FraseSorte;
+import io.micrometer.core.instrument.Gauge;
+import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class FortuneCookieService {
@@ -73,11 +76,20 @@ public class FortuneCookieService {
             "Realize o óbvio, pense no improvável e conquiste o impossível."
     );
 
+    private final AtomicInteger meuMedidor = new AtomicInteger();
+
+    public FortuneCookieService(MeterRegistry registro) {
+        Gauge.builder("Meu.Medidor", meuMedidor, AtomicInteger::get)
+                .description("Mede alguma coisa")
+                .tags("Tamanho", "da Lista")
+                .register(registro);
+    }
 
     public FraseSorte sorteiaFrase() {
 
         SecureRandom random = new SecureRandom();
         int indice = random.nextInt(frases.size());
+        meuMedidor.set(indice);
         return new FraseSorte(frases.get(indice));
 
     }
