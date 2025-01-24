@@ -58,3 +58,8 @@ ________________
 Versao 1.5.2
 
     - Inclusão de integração com o Prometheus e Actuator
+
+________________
+Versao 1.5.3
+
+    - Inclusão da biblioteca Spring Boot Startup Report

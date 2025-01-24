@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>fortunecookie</artifactId>
-	<version>1.5.2</version>
+	<version>1.5.3</version>
 	<name>fortunecookie</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -32,6 +32,13 @@
 					<artifactId>junit</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.maciejwalkowiak.spring</groupId>
+			<artifactId>spring-boot-startup-report</artifactId>
+			<version>0.2.0</version>
+			<optional>true</optional>
 		</dependency>
 
 		<dependency>

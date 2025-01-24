@@ -91,7 +91,7 @@ public class FortuneCookieController {
     @GetMapping("/geraImagem")
     public String geraImagemBiscoitoSorte() {
         //return openAIService.enviaImagemModel("Construa uma imagem com um pessoa com barba vermelha com um biscoito da sorte");
-        return openAIService.enviaImagemModel("As Java evolves, older APIs and features are sometimes deprecated or removed. For instance, the Applet API has been deprecated, reflecting the shift away from client-side applets in favor of modern web technologies.");
+        return openAIService.enviaImagemModel(" Optimize Spring Boot Startup for Speed");
     }
 
     @GetMapping("/sorteiaNumero/{numero}")
