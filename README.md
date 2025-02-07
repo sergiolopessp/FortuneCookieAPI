@@ -63,3 +63,14 @@ ________________
 Versao 1.5.3
 
     - Inclusão da biblioteca Spring Boot Startup Report
+
+________________
+Versao 1.5.4
+
+    - Ajustes para atualização para habilitação dos testes unitários
+    
+    - Atualização para o Spring 3.4.2
+    - junit-jupiter-api de 5.10.1 para 5.11.4
+    - junit-jupiter-engine de 5.10.1 para 5.11.4
+    - maven-surefire-plugin de 3.2.3 para 3.5.2
+    - httpclient5 de 5.2.1 para 5.4.2

@@ -91,7 +91,7 @@ public class FortuneCookieController {
     @GetMapping("/geraImagem")
     public String geraImagemBiscoitoSorte() {
         //return openAIService.enviaImagemModel("Construa uma imagem com um pessoa com barba vermelha com um biscoito da sorte");
-        return openAIService.enviaImagemModel(" Optimize Spring Boot Startup for Speed");
+        return openAIService.enviaImagemModel("WebAuthn/FIDO2: Demystifying attestation and MDS");
     }
 
     @GetMapping("/sorteiaNumero/{numero}")
