@@ -8,15 +8,15 @@ jobs:
       - name: Testing workflow
         uses: actions/checkout@v4
 
-      - name: Configurar Java 21
+      - name: Configurar Java 22
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin' 
-          java-version: '21' # Altere para '22' se necessário
+          java-version: '22' 
           cache: maven
 
       - name: Maven test
-        run: mvn test -X
+        run: mvn test
       
       - name: Checkstyle
         run: mvn checkstyle:checkstyle
