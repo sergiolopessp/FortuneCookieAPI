@@ -1,18 +1,36 @@
 
+version: '3.8'
+
 services:
-  teste-java-docker:
-    build:
-      context: .
-    ports:
-      - 8000:8000
-      - 8080:8080
+  postgres:
+    image: postgres:16.3
+    container_name: postgres_db_compose
     environment:
-      - SERVER_PORT=8080
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Postgres2018!
+    ports:
+      - "5432:5432"
     volumes:
-      - ./:/app
-    healthcheck:
-      test: "curl -f -s http://localhost:8080/actuator/health | grep UP || exit 1"
-      interval: 20s
-      timeout: 10s
-      retries: 1
-    restart: unless-stopped
+      - /home/sergiolopes/Documentos/PostgreSQL:/var/lib/postgresql/data
+    networks:
+      - postgres-network
+
+  app:
+    build: .
+    container_name: spring_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: <url_banco>
+      SPRING_DATASOURCE_USERNAME: <username_banco>
+      SPRING_DATASOURCE_PASSWORD: <senha_banco>
+      CHATGPT_APIKEY: <api-key>
+    networks:
+      - postgres-network
+
+networks:
+  postgres-network:
+    external: true

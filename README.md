@@ -1,76 +1,169 @@
-FortuneCookie API
+# Fortune Cookie API 🍪
 
-Versão 1.0.0
+Uma aplicação Spring Boot moderna que entrega frases de biscoito da sorte — tanto locais quanto geradas por IA (OpenAI) — com suporte a geração de imagens, toggles via FF4j, monitoramento com Prometheus e testes robustos com Testcontainers, JaCoCo e PITest.
 
-Atualizada na Branch Main com o Spring Boot, versão 3.0.2, e atualizações das bibliotecas do JUnit e PiTest.
+## 🔧 Tecnologias Utilizadas
 
-A partir do Spring Boot 3, é pré-requisito para essa aplicação a JDK 17 ou superior.
+- **Java 24**
+- **Spring Boot 3.4.2**
+- **Spring Web, Spring Data JPA**
+- **PostgreSQL**
+- **Testcontainers**
+- **JUnit 5**
+- **Langchain4j + OpenAI**
+- **FF4j (Feature Toggles)**
+- **Micrometer + Prometheus**
+- **JaCoCo** (cobertura)
+- **PITest** (testes de mutação)
 
-______________
+---
 
-Release Notes
+## 🚀 Como Executar
 
-Versão 1.2.1 
-    Implementação de controle de Exceptions Usando Problem Details, conforme:
-    https://deviniciative.wordpress.com/2023/02/17/spring-boot-3-melhorando-suas-exceptions-com-problem-details/
+### Pré-requisitos
 
-_______________
-Versão 1.3.0
-    Implementado a recuperação do Frase do Biscoito via IA com o ChatGPT, veja:
-    https://deviniciative.wordpress.com/2023/07/12/hands-on-conectando-uma-aplicacao-java-ao-chatgpt/
+- Java 24
+- Docker + Docker Compose
+- Variáveis de ambiente:
+  ```env
+  CHATGPT_APIKEY=<sua_chave_OpenAI>
+  SPRING_DATASOURCE_URL=<url_do_banco>
+  SPRING_DATASOURCE_USERNAME=<username_banco>
+  SPRING_DATASOURCE_PASSWORD=<senha_banco>
+  ```
 
-________________
-Versão 1.4.0
-    - Atualizado para o Java 21
-    - Atualizado para o Spring 3.1.4
-    - Implementando Feature Toogle via FF4J
-    - Troca da Porta Padrao do servidor para ":9090"
-    - Detalhes: https://deviniciative.wordpress.com/2023/10/23/lidando-com-feature-flag-usando-o-ff4j/
+### Rodando localmente com Maven
 
-________________
-Versao 1.5.0
-    
-    - Incluindo o Spring Actuator
+```bash
+./mvnw clean spring-boot:run
+```
 
-    - Criado mecanismo de Sanitização de dados.
+### Rodando com Docker Compose
 
-    - Retorno da porta Padrão para ":8080"
+```bash
+docker-compose up --build
+```
 
-    - Alterando o DockerFile para rodar o Temurin JDK 21 e rodar a partir do Jar
+### Ver logs da aplicação
 
-    - Atualização do Spring Boot para versão 3.2.1
+```bash
+docker-compose logs -f app
+```
 
-    - Atualização das dependencias para suporte ao Java 21
+---
 
-    
-    Detalhes: https://deviniciative.wordpress.com/2024/01/05/colocando-sua-api-spring-boot-no-ar-com-o-aws-fargate/
+## 📡 Endpoints REST
 
-    Detalhes: https://deviniciative.wordpress.com/2024/01/12/spring-boot-3-protegendo-dados-sensiveis-no-actuator/
+### 🔮 Frases
 
-________________
-Versao 1.5.1
-    
-    - Atualização do Spring Boot para versão 3.3.1 
+| Método | Endpoint                  | Descrição                                        |
+|--------|---------------------------|--------------------------------------------------|
+| GET    | `/sorteiaFrase`           | Retorna frase local ou IA, dependendo do toggle |
+| GET    | `/sorteiaFraseOpenAi`     | Sempre retorna uma frase gerada via OpenAI       |
+| POST   | `/v1/db/frase`            | Salva uma nova frase no banco                    |
+| GET    | `/v1/db/frase/{id}`       | Busca uma frase específica por ID                |
+| GET    | `/v1/db/sorteiaFrase`     | Sorteia uma frase da base de dados               |
 
-    - Atualização do docker-compose.yml para configurar o Health Check no Containers.
+### 🎨 Geração de imagem
 
-________________
-Versao 1.5.2
+| Método | Endpoint         | Descrição                                         |
+|--------|------------------|---------------------------------------------------|
+| GET    | `/geraImagem`    | Retorna imagem gerada com base na `frase` enviada via query param (`?frase=...`) |
 
-    - Inclusão de integração com o Prometheus e Actuator
+### 🎛️ Feature Toggles
 
-________________
-Versao 1.5.3
+| Método | Endpoint                  | Descrição                            |
+|--------|---------------------------|--------------------------------------|
+| GET    | `/ligar-ia/{ligarIA}`     | Ativa ou desativa uso de IA (true/false) |
 
-    - Inclusão da biblioteca Spring Boot Startup Report
+### 🎲 Extras
 
-________________
-Versao 1.5.4
+| Método | Endpoint                  | Descrição                            |
+|--------|---------------------------|--------------------------------------|
+| GET    | `/sorteiaNumero/{numero}` | Retorna um número "da sorte" baseado na entrada |
 
-    - Ajustes para atualização para habilitação dos testes unitários
-    
-    - Atualização para o Spring 3.4.2
-    - junit-jupiter-api de 5.10.1 para 5.11.4
-    - junit-jupiter-engine de 5.10.1 para 5.11.4
-    - maven-surefire-plugin de 3.2.3 para 3.5.2
-    - httpclient5 de 5.2.1 para 5.4.2
+---
+
+## 📈 Métricas e Observabilidade
+
+- Micrometer configurado com **Prometheus**
+- Ative o Actuator em `application.properties`
+- Acesse métricas: [http://localhost:8080/actuator/prometheus](http://localhost:8080/actuator/prometheus)
+
+---
+
+## 🧪 Testes e Cobertura
+
+### Rodar testes unitários e integração:
+
+```bash
+./mvnw clean test
+```
+
+### Geração de relatório de cobertura com JaCoCo:
+
+```bash
+./mvnw jacoco:report
+# Resultado: target/site/jacoco/index.html
+```
+
+### Análise de mutação com PITest:
+
+```bash
+./mvnw org.pitest:pitest-maven:mutationCoverage
+```
+
+---
+
+## 🧠 Integração com OpenAI
+
+- Geração de frases e imagens baseada em linguagem natural com uso de `Langchain4j`.
+- O serviço `OpenAIService` encapsula chamadas para `enviaQueryModel()` e `enviaImagemModel()`.
+
+---
+
+## 🧰 FF4j – Feature Toggle
+
+FF4j permite alternar entre geração de frase local e via IA:
+
+- Toggle: `IA_FEATURE`
+- Ative/desative com:
+  ```
+  GET /ligar-ia/true  # Usa IA
+  GET /ligar-ia/false # Usa frases locais
+  ```
+
+---
+
+## 🧑‍💻 Estrutura do Projeto
+
+```
+src/
+├── controller/       # REST endpoints
+├── service/          # Lógicas de negócio
+├── data/             # JPA entities
+├── dto/              # Objetos de transporte
+├── configuration/    # Configurações do FF4j e outros beans
+├── exceptions/       # Exceções customizadas
+└── test/             # Testes com JUnit 5 e Testcontainers
+```
+
+---
+
+## 📦 Compilar para Produção
+
+```bash
+./mvnw clean package
+```
+
+O artefato será gerado em: `target/fortunecookie-2.0.0.jar`
+
+---
+
+## 📄 Licença
+
+Este projeto é apenas para fins educacionais. Para uso comercial, consulte o autor.
+
+---
+
+> Criado com ❤️ usando Spring Boot + OpenAI + Feature Toggles

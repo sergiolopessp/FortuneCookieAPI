@@ -22,16 +22,16 @@ public class OpenAIService {
     private static final Logger LOGGER = LoggerFactory.getLogger(OpenAIService.class);
 
     private final DistributionSummary summary;
+    private String apiKey;
 
-    public OpenAIService(MeterRegistry registro) {
+    public OpenAIService(MeterRegistry registro, @Value("${chatgpt.apiKey}") String apiKey) {
+        this.apiKey = apiKey;
         this.summary = DistributionSummary.builder("Dados Sumarizados")
                 .description("Uma metrica customizada")
                 .tags("Valor", "Trafegado")
                 .register(registro);
     }
 
-    @Value("${chatgpt.apiKey}")
-    private String apiKey;
     public String enviaQuery(String entrada)  {
 
         ChatLanguageModel model =  OpenAiChatModel.withApiKey(apiKey);
@@ -55,11 +55,7 @@ public class OpenAIService {
 
     public String enviaImagemModel(String entrada) {
 
-        ImageModel model = OpenAiImageModel.builder()
-                .modelName("dall-e-3")
-                .apiKey(apiKey)
-                .build();
-
+        ImageModel model = OpenAiImageModel.withApiKey(apiKey);
 
         Response<Image> resposta = model.generate(entrada);
 

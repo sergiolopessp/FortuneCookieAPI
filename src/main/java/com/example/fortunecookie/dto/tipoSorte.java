@@ -1,4 +1,4 @@
-package com.example.fortunecookie.data;
+package com.example.fortunecookie.dto;
 
 public enum tipoSorte {
     SORTE,

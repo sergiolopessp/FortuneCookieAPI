@@ -1,7 +1,7 @@
-FROM eclipse-temurin:21.0.1_12-jdk
+FROM eclipse-temurin:24.0.1_9-jre
 
-COPY ./target/fortunecookie-1.5.4.jar fortunecookie-1.5.4.jar
+COPY ./target/fortunecookie-2.0.0.jar fortunecookie-2.0.0.jar
 
-CMD ["java","-jar","fortunecookie-1.5.4.jar"]
+CMD ["java","-jar","fortunecookie-2.0.0.jar"]
 
 EXPOSE 8080
