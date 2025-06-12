@@ -24,6 +24,7 @@ Uma aplicação Spring Boot moderna que entrega frases de biscoito da sorte — 
 
 - Java 24
 - Docker + Docker Compose
+- [Kind (Kubernetes in Docker)](https://kind.sigs.k8s.io/)
 - Variáveis de ambiente:
   ```env
   CHATGPT_APIKEY=<sua_chave_OpenAI>
@@ -31,7 +32,48 @@ Uma aplicação Spring Boot moderna que entrega frases de biscoito da sorte — 
   SPRING_DATASOURCE_USERNAME=<username_banco>
   SPRING_DATASOURCE_PASSWORD=<senha_banco>
   ```
+### ▶️ Executar com Kind + Kubernetes (recomendado para testes locais)
 
+1. **Crie o cluster local com Kind**:
+
+```bash
+kind create cluster --config infrastructure/kind-config.yaml
+```
+
+2. **Build da imagem da aplicação e carregamento no Kind**:
+
+```bash
+docker build -t fortunecookie-k8s-app:2.0.0 .
+kind load docker-image fortunecookie-k8s-app:2.0.0
+```
+
+3. **Aplique os manifestos Kubernetes**:
+
+```bash
+kubectl apply -f infrastructure/postgres.yaml
+kubectl apply -f infrastructure/java-app.yaml
+```
+
+4. **Verifique os pods**:
+
+```bash
+kubectl get pods
+```
+
+5. **Acesse a aplicação via navegador**:
+
+A aplicação será exposta em:  
+👉 http://localhost:8080/sorteiaFrase
+👉 http://localhost:8080/v1/db/sorteiaFrase
+---
+
+### ❌ Parar e remover o cluster:
+
+```bash
+kind delete cluster
+```
+
+---
 ### Rodando localmente com Maven
 
 ```bash
@@ -52,6 +94,16 @@ docker-compose logs -f app
 
 ---
 
+## 📁 Estrutura da pasta `infrastructure/`
+
+```
+infrastructure/
+├── kind-config.yaml     # Configuração do cluster Kind
+├── postgres-deployment.yaml        # PVC + Service + Deployment do PostgreSQL
+└── java-app-deployment.yaml        # Service + Deployment da aplicação Java
+```
+
+---
 ## 📡 Endpoints REST
 
 ### 🔮 Frases

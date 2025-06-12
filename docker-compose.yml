@@ -8,11 +8,11 @@ services:
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Postgres2018!
+      POSTGRES_PASSWORD: <<senha do banco>>
     ports:
       - "5432:5432"
     volumes:
-      - /home/sergiolopes/Documentos/PostgreSQL:/var/lib/postgresql/data
+      - /home/sergiolopes/Documentos/DataBase:/var/lib/postgresql/data
     networks:
       - postgres-network
 
@@ -24,10 +24,10 @@ services:
     depends_on:
       - postgres
     environment:
-      SPRING_DATASOURCE_URL: <url_banco>
-      SPRING_DATASOURCE_USERNAME: <username_banco>
-      SPRING_DATASOURCE_PASSWORD: <senha_banco>
-      CHATGPT_APIKEY: <api-key>
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db_compose:5432/postgres
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: <<senha do banco>>!
+      CHATGPT_APIKEY: <<chave da api>>
     networks:
       - postgres-network
 
