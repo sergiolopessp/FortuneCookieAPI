@@ -86,3 +86,8 @@ Versão 2.0.0 - (Versão Major)
     - Criação dos Testes de Integração com TesteContainers
     - Migração para o Java 24
     - Refatorações dos Codigos para melhorias
+_________________
+Versão 2.1.0
+
+    - Plugin Jacoco de 0.8.11 para 0.8.13 (suporte ao Java 24)
+    - Spring Boot da 3.4.2 para 3.5.3
