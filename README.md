@@ -43,8 +43,8 @@ kind create cluster --config infrastructure/kind-config.yaml
 2. **Build da imagem da aplicação e carregamento no Kind**:
 
 ```bash
-docker build -t fortunecookie-k8s-app:2.0.1 .
-kind load docker-image fortunecookie-k8s-app:2.0.1
+docker build -t fortunecookie-k8s-app:2.1.1 .
+kind load docker-image fortunecookie-k8s-app:2.1.1
 ```
 
 3. **Aplique os manifestos Kubernetes**:
@@ -208,7 +208,7 @@ src/
 ./mvnw clean package
 ```
 
-O artefato será gerado em: `target/fortunecookie-2.0.1.jar`
+O artefato será gerado em: `target/fortunecookie-2.1.1.jar`
 
 ---
 
