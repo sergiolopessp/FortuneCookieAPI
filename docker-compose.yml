@@ -1,4 +1,3 @@
-
 version: '3.8'
 
 services:
@@ -8,7 +7,7 @@ services:
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: <<aqui vai a semha>>
+      POSTGRES_PASSWORD: Postgres2018!
     ports:
       - "5432:5432"
     volumes:
@@ -26,8 +25,8 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db_compose:5432/postgres
       SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: <<aqui vai a semha>>
-      CHATGPT_APIKEY: <<aqui vai a sua api Keu>>
+      SPRING_DATASOURCE_PASSWORD: Postgres2018!
+      CHATGPT_APIKEY: ${CHATGPT_APIKEY}
     networks:
       - postgres-network
 

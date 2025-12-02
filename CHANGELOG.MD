@@ -91,3 +91,9 @@ Versão 2.1.0
 
     - Plugin Jacoco de 0.8.11 para 0.8.13 (suporte ao Java 24)
     - Spring Boot da 3.4.2 para 3.5.3
+
+_________________
+Versão 2.1.1
+
+    - Atualização para o Java 25
+    - Atualização do Spring Boot para 3.5.8

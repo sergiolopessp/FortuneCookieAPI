@@ -26,7 +26,7 @@ spec:
     spec:
       containers:
         - name: java-app
-          image: fortunecookie-k8s-app:2.0.1
+          image: fortunecookie-k8s-app:2.1.1
           ports:
             - containerPort: 8080
           env:
@@ -35,6 +35,6 @@ spec:
             - name: SPRING_DATASOURCE_USERNAME
               value: postgres
             - name: SPRING_DATASOURCE_PASSWORD
-              value: <<aqui vai a senha>>
+              value: Postgres2018!
             - name: CHATGPT_APIKEY
-              value: <<aqui vai a api-key>>
+              value: "CHANGE_ME"

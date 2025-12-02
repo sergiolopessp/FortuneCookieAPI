@@ -41,7 +41,7 @@ spec:
             - name: POSTGRES_USER
               value: postgres
             - name: POSTGRES_PASSWORD
-              value: <<aqui vai a senha>>
+              value: Postgres2018!
           ports:
             - containerPort: 5432
           volumeMounts:
