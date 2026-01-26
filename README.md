@@ -208,7 +208,7 @@ src/
 ./mvnw clean package
 ```
 
-O artefato será gerado em: `target/fortunecookie-2.1.1.jar`
+O artefato será gerado em: `target/fortunecookie-2.2.2.jar`
 
 ---
 

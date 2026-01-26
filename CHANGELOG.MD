@@ -107,4 +107,4 @@ Versão 2.2.0
 _________________
 Versão 2.2.2
 
-    - Remoção do Startup Report devido a incompatibilidade com o Spring Boot 4.0.0
+    - Remoção do Startup Report devido a incompatibilidade com o Spring Boot 4.0.0gi
