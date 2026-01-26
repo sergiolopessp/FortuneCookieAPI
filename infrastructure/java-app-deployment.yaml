@@ -37,4 +37,4 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               value: Postgres2018!
             - name: CHATGPT_APIKEY
-              value: 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
+              value: 
