@@ -9,17 +9,16 @@ import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(properties = {"chatgpt.apiKey=valor_teste"})
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
+@SpringBootTest(properties = { "chatgpt.apiKey=valor_teste" })
+@EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class })
 class FortuneCookieServiceTest {
 
     @Autowired
@@ -43,7 +42,6 @@ class FortuneCookieServiceTest {
         assertNotNull(frase.getFraseSorteada());
         assertFalse(frase.getFraseSorteada().isEmpty());
     }
-
 
     @Test
     void deveRetornarNumeroSorteValido() {

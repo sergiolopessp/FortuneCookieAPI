@@ -1,20 +1,21 @@
 package com.example.fortunecookie.controller;
 
-import com.example.fortunecookie.data.Frase;
-import com.example.fortunecookie.service.DataBaseService;
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.Optional;
+import com.example.fortunecookie.data.Frase;
+import com.example.fortunecookie.service.DataBaseService;
 
-import static org.hamcrest.Matchers.emptyOrNullString;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import java.util.Optional;
 
 @WebMvcTest(DataBaseController.class)
 public class DataBaseControllerTest {
@@ -32,12 +33,12 @@ public class DataBaseControllerTest {
         when(dataBaseService.salvaFrase(frase)).thenReturn(frase);
 
         mockMvc.perform(post("/v1/db/frase")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                {
-                                  "frase": "Beba água!"
-                                }
-                                """))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {
+                          "frase": "Beba água!"
+                        }
+                        """))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.frase").value("Beba água!"));
     }

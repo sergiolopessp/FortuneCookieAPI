@@ -2,8 +2,6 @@ package com.example.fortunecookie.service;
 
 import com.example.fortunecookie.repositorio.FraseRepositorio;
 import dev.langchain4j.data.image.Image;
-import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.image.ImageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
 import dev.langchain4j.model.openai.OpenAiImageModel;
 import dev.langchain4j.model.output.Response;
@@ -12,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -24,8 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-@TestPropertySource(properties = {"chatgpt.apiKey=valor_teste"})
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class})
+@TestPropertySource(properties = { "chatgpt.apiKey=valor_teste" })
+@EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class })
 public class OpenAIServiceTest {
 
     @Autowired

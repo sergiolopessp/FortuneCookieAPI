@@ -2,11 +2,11 @@ package com.example.fortunecookie.repositorio;
 
 import com.example.fortunecookie.data.Frase;
 import org.assertj.core.api.Assertions;
-import org.junit.Assert;
+
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
+import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -39,7 +39,7 @@ public class FraseRepositorioTest {
     private FraseRepositorio fraseRepositorio;
 
     @BeforeAll
-    static void beforeAll(){
+    static void beforeAll() {
         postgreSQLContainer.start();
     }
 
@@ -52,7 +52,7 @@ public class FraseRepositorioTest {
     @Order(1)
     public void deveCriarUmaFraseComFrasePassada() {
         Frase frase = criaFrase();
-       fraseRepositorio.save(frase);
+        fraseRepositorio.save(frase);
 
         Optional<Frase> fraseObtida = fraseRepositorio.findByFrase(frase.getFrase());
 
@@ -74,8 +74,6 @@ public class FraseRepositorioTest {
                 .hasSize(1);
 
     }
-
-
 
     private Frase criaFrase() {
         var frase = "Fazer ou Não Fazer. Não Existe Tentar";

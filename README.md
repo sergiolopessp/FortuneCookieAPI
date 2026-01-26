@@ -4,8 +4,8 @@ Uma aplicação Spring Boot moderna que entrega frases de biscoito da sorte — 
 
 ## 🔧 Tecnologias Utilizadas
 
-- **Java 24**
-- **Spring Boot 3.5.3**
+- **Java 25**
+- **Spring Boot 4.0.0**
 - **Spring Web, Spring Data JPA**
 - **PostgreSQL**
 - **Testcontainers**
@@ -22,7 +22,7 @@ Uma aplicação Spring Boot moderna que entrega frases de biscoito da sorte — 
 
 ### Pré-requisitos
 
-- Java 24
+- Java 25
 - Docker + Docker Compose
 - [Kind (Kubernetes in Docker)](https://kind.sigs.k8s.io/)
 - Variáveis de ambiente:

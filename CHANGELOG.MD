@@ -97,3 +97,14 @@ Versão 2.1.1
 
     - Atualização para o Java 25
     - Atualização do Spring Boot para 3.5.8
+
+_________________
+Versão 2.2.0
+
+    - Atualização do Spring Boot para 4.0.0
+    - Verificação e atualização de todas as bibliotecas
+
+_________________
+Versão 2.2.2
+
+    - Remoção do Startup Report devido a incompatibilidade com o Spring Boot 4.0.0

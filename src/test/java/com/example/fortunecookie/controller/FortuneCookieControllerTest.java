@@ -1,38 +1,31 @@
 package com.example.fortunecookie.controller;
 
-import com.example.fortunecookie.configuration.FF4jConfig;
-import com.example.fortunecookie.dto.FraseSorte;
-
-
-import com.example.fortunecookie.service.FortuneCookieService;
-import com.example.fortunecookie.service.OpenAIService;
-
-import io.micrometer.core.instrument.MeterRegistry;
-
-import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import org.ff4j.FF4j;
-
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-
 import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.mockito.ArgumentMatchers.anyString;
+import com.example.fortunecookie.configuration.FF4jConfig;
+import com.example.fortunecookie.dto.FraseSorte;
+import com.example.fortunecookie.service.FortuneCookieService;
+import com.example.fortunecookie.service.OpenAIService;
 
-import static org.mockito.Mockito.*;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-
 @WebMvcTest(FortuneCookieController.class)
-class FortuneCookieControllerTest {
+public class FortuneCookieControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -46,8 +39,6 @@ class FortuneCookieControllerTest {
     @MockitoBean
     private FF4j ff4j;
 
-    private String apiKey = "teste-key";
-
     @TestConfiguration
     static class MeterRegistryConfig {
         @Bean
@@ -60,7 +51,6 @@ class FortuneCookieControllerTest {
     void deveRetornarFraseDaIAQuandoFeatureLigada() throws Exception {
         when(ff4j.check(FF4jConfig.IA_FEATURE)).thenReturn(true);
         when(openAIService.enviaQueryModel(anyString())).thenReturn("Frase gerada pela IA");
-
 
         mockMvc.perform(get("/sorteiaFrase"))
                 .andExpect(status().isOk())
@@ -108,7 +98,6 @@ class FortuneCookieControllerTest {
     @Test
     void iaLigada_ligandoFeature_deveRetornarMensagemLigada() throws Exception {
 
-
         mockMvc.perform(get("/ligar-ia/true"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Consulta via Inteligencia Artifical Ligada"));
@@ -125,4 +114,5 @@ class FortuneCookieControllerTest {
 
         verify(ff4j).disable(FF4jConfig.IA_FEATURE);
     }
+
 }
