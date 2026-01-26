@@ -37,4 +37,4 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               value: Postgres2018!
             - name: CHATGPT_APIKEY
-              value: 
+              value: remocao
