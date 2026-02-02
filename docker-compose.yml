@@ -26,7 +26,8 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db_compose:5432/postgres
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: Postgres2018!
-      CHATGPT_APIKEY: remocao
+      CHATGPT_APIKEY: <sua_chave_chatgpt>
+      GEMINI_API_KEY: <sua_chave_gemini>
     networks:
       - postgres-network
 

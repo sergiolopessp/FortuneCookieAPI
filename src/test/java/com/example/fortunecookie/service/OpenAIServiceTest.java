@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-@TestPropertySource(properties = { "chatgpt.apiKey=valor_teste" })
+@TestPropertySource(properties = { "chatgpt.apiKey=valor_teste", "gemini.api-key=valor_teste" })
 @EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class })
 public class OpenAIServiceTest {
 

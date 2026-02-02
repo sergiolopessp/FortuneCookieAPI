@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.example.fortunecookie.configuration.FF4jConfig;
 import com.example.fortunecookie.dto.FraseSorte;
 import com.example.fortunecookie.service.FortuneCookieService;
+import com.example.fortunecookie.service.GeminiService;
 import com.example.fortunecookie.service.OpenAIService;
 
 import io.micrometer.core.instrument.MeterRegistry;
@@ -35,6 +36,9 @@ public class FortuneCookieControllerTest {
 
     @MockitoBean
     private OpenAIService openAIService;
+
+    @MockitoBean
+    private GeminiService geminiService;
 
     @MockitoBean
     private FF4j ff4j;

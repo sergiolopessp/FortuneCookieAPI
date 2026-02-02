@@ -17,7 +17,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(properties = { "chatgpt.apiKey=valor_teste" })
+@SpringBootTest(properties = { "chatgpt.apiKey=valor_teste", "gemini.api-key=valor_teste" })
 @EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class })
 class FortuneCookieServiceTest {
 

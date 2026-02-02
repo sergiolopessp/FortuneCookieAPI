@@ -15,7 +15,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-@SpringBootTest(properties = {"chatgpt.apiKey=valor_teste"})
+@SpringBootTest(properties = { "chatgpt.apiKey=valor_teste", "gemini.api-key=valor_teste" })
 @Testcontainers
 public class FortuneCookieDataLoaderTest {
 

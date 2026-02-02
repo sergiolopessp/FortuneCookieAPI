@@ -11,6 +11,7 @@ Uma aplicação Spring Boot moderna que entrega frases de biscoito da sorte — 
 - **Testcontainers**
 - **JUnit 5**
 - **Langchain4j + OpenAI**
+- **Langchain4j + Google Gemini**
 - **FF4j (Feature Toggles)**
 - **Micrometer + Prometheus**
 - **JaCoCo** (cobertura)
@@ -31,6 +32,7 @@ Uma aplicação Spring Boot moderna que entrega frases de biscoito da sorte — 
   SPRING_DATASOURCE_URL=<url_do_banco>
   SPRING_DATASOURCE_USERNAME=<username_banco>
   SPRING_DATASOURCE_PASSWORD=<senha_banco>
+  GEMINI_API_KEY=<sua_chave_Gemini>
   ```
 ### ▶️ Executar com Kind + Kubernetes (recomendado para testes locais)
 
@@ -112,6 +114,7 @@ infrastructure/
 |--------|---------------------------|--------------------------------------------------|
 | GET    | `/sorteiaFrase`           | Retorna frase local ou IA, dependendo do toggle |
 | GET    | `/sorteiaFraseOpenAi`     | Sempre retorna uma frase gerada via OpenAI       |
+| GET    | `/sorteiaFraseGemini`     | Sempre retorna uma frase gerada via Google Gemini |
 | POST   | `/v1/db/frase`            | Salva uma nova frase no banco                    |
 | GET    | `/v1/db/frase/{id}`       | Busca uma frase específica por ID                |
 | GET    | `/v1/db/sorteiaFrase`     | Sorteia uma frase da base de dados               |
@@ -172,6 +175,12 @@ infrastructure/
 - Geração de frases e imagens baseada em linguagem natural com uso de `Langchain4j`.
 - O serviço `OpenAIService` encapsula chamadas para `enviaQueryModel()` e `enviaImagemModel()`.
 
+## 🧠 Integração com Google Gemini
+
+- Utiliza o modelo `gemini-3-flash` via `Langchain4j`.
+- O serviço `GeminiService` encapsula a lógica de geração de texto.
+- **Testes**: A configuração de testes requer a propriedade `gemini.api-key` definida (ex: `valor_teste` em ambientes de teste local).
+
 ---
 
 ## 🧰 FF4j – Feature Toggle
@@ -208,7 +217,7 @@ src/
 ./mvnw clean package
 ```
 
-O artefato será gerado em: `target/fortunecookie-2.2.2.jar`
+O artefato será gerado em: `target/fortunecookie-2.3.0.jar`
 
 ---
 
@@ -218,4 +227,4 @@ Este projeto é apenas para fins educacionais. Para uso comercial, consulte o au
 
 ---
 
-> Criado com ❤️ usando Spring Boot + OpenAI + Feature Toggles
+> Criado com ❤️ usando Spring Boot + OpenAI + Gemini + Feature Toggles

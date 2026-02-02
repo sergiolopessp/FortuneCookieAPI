@@ -37,4 +37,6 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               value: Postgres2018!
             - name: CHATGPT_APIKEY
-              value: remocao
+              value: <sua_chave_chatgpt>
+            - name: GEMINI_API_KEY
+              value: <sua_chave_gemini>

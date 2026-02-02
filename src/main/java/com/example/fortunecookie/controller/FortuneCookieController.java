@@ -5,6 +5,7 @@ import com.example.fortunecookie.dto.FraseSorte;
 
 import com.example.fortunecookie.exceptions.NumeroNaoInformadoException;
 import com.example.fortunecookie.service.FortuneCookieService;
+import com.example.fortunecookie.service.GeminiService;
 import com.example.fortunecookie.service.OpenAIService;
 import io.micrometer.core.instrument.Counter;
 import io.micrometer.core.instrument.MeterRegistry;
@@ -22,10 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import java.io.IOException;
-
-
 
 @RestController
 public class FortuneCookieController {
@@ -36,20 +34,21 @@ public class FortuneCookieController {
 
     private final OpenAIService openAIService;
 
+    private final GeminiService geminiService;
+
     private final FF4j ff4j;
 
     private final Counter meuContador;
     private final Timer meuTimer;
 
-
-
     public FortuneCookieController(FortuneCookieService fortuneCookieService,
-                                   OpenAIService openAIService,
-                                   FF4j ff4j,
-                                   MeterRegistry registro) {
+            OpenAIService openAIService,
+            FF4j ff4j,
+            MeterRegistry registro, GeminiService geminiService) {
         this.fortuneCookieService = fortuneCookieService;
         this.openAIService = openAIService;
         this.ff4j = ff4j;
+        this.geminiService = geminiService;
 
         this.meuContador = Counter.builder("Meu.Contador")
                 .description("Quantas Chamadas ao Método")
@@ -72,14 +71,18 @@ public class FortuneCookieController {
             return fortuneCookieService.sorteiaFrase();
         }
 
-
     }
 
     @GetMapping(value = "/sorteiaFraseOpenAi")
-    public String sorteiaFraseOpenAi()  {
+    public String sorteiaFraseOpenAi() {
         return openAIService.enviaQueryModel("Me de uma frase de Biscoito da Sorte");
     }
 
+    @GetMapping(value = "/sorteiaFraseGemini")
+    public String sorteiaFraseGemini() {
+        return geminiService
+                .processQuery("Me de uma frase de Biscoito da Sorte com o tema de trabalho para o dia de hoje");
+    }
 
     @GetMapping("/geraImagem")
     public String geraImagemBiscoitoSorte(@RequestParam String frase) {
@@ -89,9 +92,9 @@ public class FortuneCookieController {
 
     @GetMapping("/sorteiaNumero/{numero}")
     public String sorteiaNumero(@PathVariable String numero) {
-       try {
+        try {
             return fortuneCookieService.sorteiaNumero(numero);
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new NumeroNaoInformadoException();
         }
 
@@ -106,7 +109,7 @@ public class FortuneCookieController {
             ff4j.disable(FF4jConfig.IA_FEATURE);
             return "Consulta via base local ligada";
         }
-        
+
     }
 
 }

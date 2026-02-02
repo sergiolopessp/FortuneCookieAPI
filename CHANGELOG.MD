@@ -108,3 +108,11 @@ _________________
 Versão 2.2.2
 
     - Remoção do Startup Report devido a incompatibilidade com o Spring Boot 4.0.0gi
+
+_________________
+Versão 2.3.0
+
+    - Atualização Spring Boot para 4.0.2
+    - Integração com Google Gemini 3 Flash via Langchain4j
+    - Inclusão da biblioteca dev.langchain4j/langchain4j-google-ai-gemini:0.35.0
+    - Correções nos testes unitários e de integração para suporte a properties de IA
