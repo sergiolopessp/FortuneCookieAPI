@@ -116,3 +116,10 @@ Versão 2.3.0
     - Integração com Google Gemini 3 Flash via Langchain4j
     - Inclusão da biblioteca dev.langchain4j/langchain4j-google-ai-gemini:0.35.0
     - Correções nos testes unitários e de integração para suporte a properties de IA
+
+_________________
+Versão 2.3.1
+
+    - Inclusão da propriedade `spring.mvc.apiversion.use.header`
+    - Documentação do header obrigatório `X-API-Version` no README.md
+    - Atualização dos testes de integração para incluir o header de versionamento

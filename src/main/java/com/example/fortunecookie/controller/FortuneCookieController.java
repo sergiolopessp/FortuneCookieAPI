@@ -12,7 +12,7 @@ import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;
 import org.apache.hc.core5.http.ParseException;
 import org.ff4j.FF4j;
-
+import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -62,7 +62,7 @@ public class FortuneCookieController {
 
     }
 
-    @GetMapping(value = "/sorteiaFrase", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/sorteiaFrase", produces = MediaType.APPLICATION_JSON_VALUE, version = "1.0")
     public FraseSorte sorteiaFrase() throws IOException, ParseException {
         if (ff4j.check(FF4jConfig.IA_FEATURE)) {
             return new FraseSorte(openAIService.enviaQueryModel("Me de uma frase de Biscoito da Sorte"));
@@ -91,7 +91,7 @@ public class FortuneCookieController {
     }
 
     @GetMapping("/sorteiaNumero/{numero}")
-    public String sorteiaNumero(@PathVariable String numero) {
+    public String sorteiaNumero(@NonNull @PathVariable String numero) {
         try {
             return fortuneCookieService.sorteiaNumero(numero);
         } catch (Exception e) {

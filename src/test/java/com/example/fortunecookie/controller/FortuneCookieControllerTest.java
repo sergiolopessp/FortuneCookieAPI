@@ -56,7 +56,8 @@ public class FortuneCookieControllerTest {
         when(ff4j.check(FF4jConfig.IA_FEATURE)).thenReturn(true);
         when(openAIService.enviaQueryModel(anyString())).thenReturn("Frase gerada pela IA");
 
-        mockMvc.perform(get("/sorteiaFrase"))
+        mockMvc.perform(get("/sorteiaFrase")
+                .header("X-API-Version", "1.0"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.fraseSorteada").value("Frase gerada pela IA"));
     }
@@ -67,7 +68,8 @@ public class FortuneCookieControllerTest {
         when(fortuneCookieService.sorteiaFrase())
                 .thenReturn(new FraseSorte("Sorte Local"));
 
-        mockMvc.perform(get("/sorteiaFrase"))
+        mockMvc.perform(get("/sorteiaFrase")
+                .header("X-API-Version", "1.0"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.fraseSorteada").value("Sorte Local"));
     }
@@ -77,6 +79,7 @@ public class FortuneCookieControllerTest {
         when(openAIService.enviaImagemModel(anyString())).thenReturn("http://imagem.url");
 
         mockMvc.perform(get("/geraImagem")
+                .header("X-API-Version", "1.0")
                 .param("frase", "Gato com chapéu"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("http://imagem.url"));
@@ -86,7 +89,8 @@ public class FortuneCookieControllerTest {
     void sorteiaNumero_numeroValido_deveRetornarNumero() throws Exception {
         when(fortuneCookieService.sorteiaNumero("80")).thenReturn("80");
 
-        mockMvc.perform(get("/sorteiaNumero/80"))
+        mockMvc.perform(get("/sorteiaNumero/80")
+                .header("X-API-Version", "1.0"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("80"));
     }
@@ -95,14 +99,16 @@ public class FortuneCookieControllerTest {
     void sorteiaNumero_numeroInvalido_deveRetornarErro() throws Exception {
         when(fortuneCookieService.sorteiaNumero("abc")).thenThrow(new RuntimeException());
 
-        mockMvc.perform(get("/sorteiaNumero/abc"))
+        mockMvc.perform(get("/sorteiaNumero/abc")
+                .header("X-API-Version", "1.0"))
                 .andExpect(status().is4xxClientError());
     }
 
     @Test
     void iaLigada_ligandoFeature_deveRetornarMensagemLigada() throws Exception {
 
-        mockMvc.perform(get("/ligar-ia/true"))
+        mockMvc.perform(get("/ligar-ia/true")
+                .header("X-API-Version", "1.0"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Consulta via Inteligencia Artifical Ligada"));
 
@@ -112,7 +118,8 @@ public class FortuneCookieControllerTest {
     @Test
     void iaLigada_desligandoFeature_deveRetornarMensagemDesligada() throws Exception {
 
-        mockMvc.perform(get("/ligar-ia/false"))
+        mockMvc.perform(get("/ligar-ia/false")
+                .header("X-API-Version", "1.0"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Consulta via base local ligada"));
 

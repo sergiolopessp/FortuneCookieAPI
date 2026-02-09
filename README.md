@@ -108,6 +108,16 @@ infrastructure/
 ---
 ## 📡 Endpoints REST
 
+
+### ⚠️ Versionamento da API
+
+Todos os endpoints abaixo requerem o header `X-API-Version` com o valor `1.0`.
+
+Exemplo:
+```bash
+curl -H "X-API-Version: 1.0" http://localhost:8080/sorteiaFrase
+```
+
 ### 🔮 Frases
 
 | Método | Endpoint                  | Descrição                                        |
