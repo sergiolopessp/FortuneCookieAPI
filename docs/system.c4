@@ -3,6 +3,56 @@ model {
     backend api {
       title 'Spring Boot API'
       description 'The core Java application handling business logic'
+      
+      component controllerLayer {
+        title 'Controllers'
+        description 'REST API Endpoints'
+
+        module fortuneCookieController {
+          title 'FortuneCookieController'
+          description 'Handles fortune requests'
+        }
+        module dataBaseController {
+          title 'DataBaseController'
+          description 'Handles DB fortune requests'
+        }
+      }
+
+      component serviceLayer {
+        title 'Services'
+        description 'Business Logic and Integrations'
+
+        module fortuneCookieService {
+          title 'FortuneCookieService'
+        }
+        module dataBaseService {
+          title 'DataBaseService'
+        }
+        module openAiService {
+          title 'OpenAIService'
+        }
+        module geminiService {
+          title 'GeminiService'
+        }
+      }
+
+      component dataLayer {
+        title 'Data Access'
+        description 'Repositories'
+
+        module fortuneCookieData {
+          title 'FortuneCookieData'
+          description 'JPA Repository'
+        }
+      }
+      
+      controllerLayer.fortuneCookieController -> serviceLayer.fortuneCookieService 'Uses'
+      controllerLayer.dataBaseController -> serviceLayer.dataBaseService 'Uses'
+      
+      serviceLayer.fortuneCookieService -> serviceLayer.openAiService 'Delegates to'
+      serviceLayer.fortuneCookieService -> serviceLayer.geminiService 'Delegates to'
+      
+      serviceLayer.dataBaseService -> dataLayer.fortuneCookieData 'Uses'
     }
 
     database postgres {
@@ -10,10 +60,10 @@ model {
       description 'Stores fortunes, users, and application state'
     }
 
-    api -> postgres 'Reads from and writes to'
+    api.dataLayer.fortuneCookieData -> postgres 'Reads from and writes to'
   }
 
-  user -> fortuneCookieSys.api 'Makes HTTP API calls to'
-  fortuneCookieSys.api -> chatGPT 'Sends prompts to via REST'
-  fortuneCookieSys.api -> gemini 'Sends prompts to via REST'
+  user -> fortuneCookieSys.api.controllerLayer 'Makes HTTP API calls to'
+  fortuneCookieSys.api.serviceLayer.openAiService -> chatGPT 'Sends prompts to via REST'
+  fortuneCookieSys.api.serviceLayer.geminiService -> gemini 'Sends prompts to via REST'
 }

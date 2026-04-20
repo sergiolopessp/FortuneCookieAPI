@@ -29,4 +29,16 @@ specification {
       color secondary
     }
   }
+  element component {
+    style {
+      shape component
+      color primary
+    }
+  }
+  element module {
+    style {
+      shape rectangle
+      color muted
+    }
+  }
 }

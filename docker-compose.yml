@@ -26,8 +26,8 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres_db_compose:5432/postgres
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: Postgres2018!
-      CHATGPT_APIKEY: <<aqui vai a chave api openai>>
-      GEMINI_API_KEY: <<aqui vai a chave api gemini>>
+      CHATGPT_APIKEY: <<CHATGPT_APIKEY>>
+      GEMINI_API_KEY: <<GEMINI_API_KEY>>
     networks:
       - postgres-network
 

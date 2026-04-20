@@ -16,4 +16,28 @@ views {
     description 'Internal components of the Fortune Cookie System'
     include *
   }
+
+  view componentView of fortuneCookieSys.api {
+    title 'Component View'
+    description 'Components of the Spring Boot API'
+    include *
+  }
+
+  view codeViewControllers of fortuneCookieSys.api.controllerLayer {
+    title 'Code View: Controllers'
+    description 'Modules within the Controller layer'
+    include *
+  }
+
+  view codeViewServices of fortuneCookieSys.api.serviceLayer {
+    title 'Code View: Services'
+    description 'Modules within the Service layer'
+    include *
+  }
+
+  view codeViewData of fortuneCookieSys.api.dataLayer {
+    title 'Code View: Data Access'
+    description 'Modules within the Data Access layer'
+    include *
+  }
 }
