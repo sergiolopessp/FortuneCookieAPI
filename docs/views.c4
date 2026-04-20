@@ -1,0 +1,19 @@
+views {
+  view index {
+    title 'System Landscape'
+    description 'Overview of the entire system and its external integrations'
+    include *
+  }
+
+  view contextView of fortuneCookieSys {
+    title 'System Context'
+    description 'Context view of the Fortune Cookie System'
+    include *
+  }
+
+  view containerView of fortuneCookieSys {
+    title 'Container View'
+    description 'Internal components of the Fortune Cookie System'
+    include *
+  }
+}

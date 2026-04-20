@@ -33,12 +33,14 @@ public class DataBaseControllerTest {
         when(dataBaseService.salvaFrase(frase)).thenReturn(frase);
 
         mockMvc.perform(post("/v1/db/frase")
+                .header("X-API-Version", "1.0")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
                           "frase": "Beba água!"
                         }
                         """))
+                .andDo(org.springframework.test.web.servlet.result.MockMvcResultHandlers.print())
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.frase").value("Beba água!"));
     }
@@ -49,7 +51,8 @@ public class DataBaseControllerTest {
 
         when(dataBaseService.findFraseById("1")).thenReturn(frase);
 
-        mockMvc.perform(get("/v1/db/frase/1"))
+        mockMvc.perform(get("/v1/db/frase/1")
+                .header("X-API-Version", "1.0"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.frase").value("Você terá um ótimo dia!"));
     }
@@ -60,7 +63,8 @@ public class DataBaseControllerTest {
 
         when(dataBaseService.sorteiaFraseDB()).thenReturn(Optional.of(frase));
 
-        mockMvc.perform(get("/v1/db/sorteiaFrase"))
+        mockMvc.perform(get("/v1/db/sorteiaFrase")
+                .header("X-API-Version", "1.0"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.frase").value("Sorte acompanha os ousados!"));
     }
@@ -69,7 +73,8 @@ public class DataBaseControllerTest {
     void deveRetornarVazioQuandoNaoHouverFrases() throws Exception {
         when(dataBaseService.sorteiaFraseDB()).thenReturn(Optional.empty());
 
-        mockMvc.perform(get("/v1/db/sorteiaFrase"))
+        mockMvc.perform(get("/v1/db/sorteiaFrase")
+                .header("X-API-Version", "1.0"))
                 .andExpect(status().isNoContent());
     }
 }

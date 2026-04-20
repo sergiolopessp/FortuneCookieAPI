@@ -1,0 +1,32 @@
+specification {
+  element actor {
+    style {
+      shape person
+      color secondary
+    }
+  }
+  element system {
+    style {
+      shape browser
+      color primary
+    }
+  }
+  element externalSystem {
+    style {
+      shape rectangle
+      color muted
+    }
+  }
+  element backend {
+    style {
+      shape rectangle
+      color primary
+    }
+  }
+  element database {
+    style {
+      shape cylinder
+      color secondary
+    }
+  }
+}

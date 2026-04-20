@@ -1,0 +1,25 @@
+model {
+  actor user {
+    title 'End User'
+    description 'A user interacting with the Fortune Cookie API'
+  }
+
+  system fortuneCookieSys {
+    title 'Fortune Cookie System'
+    description 'Provides fortune cookies using generative AI models'
+  }
+
+  externalSystem chatGPT {
+    title 'OpenAI ChatGPT API'
+    description 'External service for text generation'
+  }
+
+  externalSystem gemini {
+    title 'Google Gemini API'
+    description 'External service for text generation'
+  }
+
+  user -> fortuneCookieSys 'Requests a fortune cookie'
+  fortuneCookieSys -> chatGPT 'Prompts for a fortune'
+  fortuneCookieSys -> gemini 'Prompts for a fortune'
+}

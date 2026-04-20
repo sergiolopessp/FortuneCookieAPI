@@ -1,0 +1,19 @@
+model {
+  extend fortuneCookieSys {
+    backend api {
+      title 'Spring Boot API'
+      description 'The core Java application handling business logic'
+    }
+
+    database postgres {
+      title 'PostgreSQL Database'
+      description 'Stores fortunes, users, and application state'
+    }
+
+    api -> postgres 'Reads from and writes to'
+  }
+
+  user -> fortuneCookieSys.api 'Makes HTTP API calls to'
+  fortuneCookieSys.api -> chatGPT 'Sends prompts to via REST'
+  fortuneCookieSys.api -> gemini 'Sends prompts to via REST'
+}

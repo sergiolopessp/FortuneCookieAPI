@@ -62,7 +62,7 @@ public class FortuneCookieController {
 
     }
 
-    @GetMapping(value = "/sorteiaFrase", produces = MediaType.APPLICATION_JSON_VALUE, version = "1.0")
+    @GetMapping(value = "/sorteiaFrase", produces = MediaType.APPLICATION_JSON_VALUE)
     public FraseSorte sorteiaFrase() throws IOException, ParseException {
         if (ff4j.check(FF4jConfig.IA_FEATURE)) {
             return new FraseSorte(openAIService.enviaQueryModel("Me de uma frase de Biscoito da Sorte"));

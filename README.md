@@ -204,6 +204,33 @@ FF4j permite alternar entre geração de frase local e via IA:
   GET /ligar-ia/false # Usa frases locais
   ```
 
+## 🏗️ Arquitetura e Documentação C4
+
+Este projeto utiliza [LikeC4](https://likec4.dev/) para documentação de arquitetura as code. Os modelos estão na pasta `docs/`.
+
+### Como visualizar os diagramas
+
+Certifique-se de ter o Node.js instalado e execute os seguintes comandos:
+
+1. **Visualização local interativa (Live Server):**
+   ```bash
+   npx likec4 start docs/
+   ```
+   Isso iniciará um servidor local com live-reload e abrirá a visualização da arquitetura no seu navegador.
+
+2. **Gerar site estático da documentação:**
+   ```bash
+   npx likec4 build docs/ -o dist/docs
+   ```
+   Compila um site estático otimizado na pasta `dist/docs` contendo a documentação interativa.
+
+3. **Exportar como imagens estáticas (PNG):**
+   ```bash
+   npx likec4 export png docs/ -o dist/images
+   ```
+
+*Dica: Para a melhor experiência de desenvolvimento, recomendamos instalar a **extensão oficial do LikeC4 no VS Code**, que fornece preview em tempo real, auto-completar e validação ao editar os arquivos `.c4`.*
+
 ---
 
 ## 🧑‍💻 Estrutura do Projeto
